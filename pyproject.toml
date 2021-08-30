@@ -1,0 +1,79 @@
+[project]
+name = 'real-world-rpg-maps-api'
+project_name = 'real-world-rpg-maps-api'
+version = '0.1.0'
+description = 'An API to generate RPG maps from real maps using prettymaps'
+license = { file = 'LICENSE' }
+readme = 'README.md'
+requires-python = '>=3.6'
+urls = { repository = 'https://github.com/TheCleric/ppsetuptools' }
+
+dependencies = ['fastapi==0.68.1', 'uvicorn==0.15.0']
+
+[[project.authors]]
+name = 'Adam Weeden'
+email = 'adamweeden@gmail.com'
+
+[project.optional-dependencies]
+dev = ['autopep8', 'isort']
+test = ['mypy', 'pylint', 'pytest', 'pytest-cov']
+
+[tool.autopep8]
+max_line_length = 120
+
+[tool.isort]
+line_length = 120
+
+[tool.mypy]
+python_version = 3.6
+
+# Display options
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_context = true
+
+# Dynamic/generics rules
+disallow_any_generics = true
+disallow_subclassing_any = true
+
+# Untyped rules
+check_untyped_defs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+# None/Optional rules
+no_implicit_optional = true
+strict_optional = true
+
+# Warnings
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+# Strict rules
+ignore_missing_imports = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = 'fastapi.*'
+follow_imports = 'skip'
+no_implicit_reexport = false
+
+[tool.pylint.pep8]
+'max-line-length' = 120
+
+[tool.pylint.MASTER]
+ignore = 'venv'
+
+[tool.pylint.'MESSAGES CONTROL']
+enable = ['errors', 'warnings']
+disable = [
+    'missing-class-docstring',
+    'missing-function-docstring',
+    'missing-module-docstring',
+    'too-few-public-methods',
+]

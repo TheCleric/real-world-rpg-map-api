@@ -1,6 +1,10 @@
+from typing import Any, Dict
+
 from fastapi import FastAPI
+
 app = FastAPI()
 
+
 @app.get("/")
-def hello():
-    return {"message":"Hello"}
+def hello() -> Dict[str, Any]:
+    return {"message": "Hello"}
