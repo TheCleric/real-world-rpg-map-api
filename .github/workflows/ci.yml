@@ -1,0 +1,22 @@
+name: Linting + MyPy + Pytest run for PRs
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Python setup
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+      - name: Build and run all checks
+        run: make install ci
