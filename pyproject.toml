@@ -5,7 +5,7 @@ version = '0.1.0'
 description = 'An API to generate RPG maps from real maps using prettymaps'
 license = { file = 'LICENSE' }
 readme = 'README.md'
-requires-python = '>=3.6'
+requires-python = '>=3.7'
 urls = { repository = 'https://github.com/TheCleric/ppsetuptools' }
 
 dependencies = ['fastapi==0.68.1', 'uvicorn==0.15.0']
@@ -25,7 +25,7 @@ max_line_length = 120
 line_length = 120
 
 [tool.mypy]
-python_version = 3.6
+python_version = 3.7
 
 # Display options
 pretty = true
