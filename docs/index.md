@@ -33,12 +33,8 @@
         var onRequestLoad = function() {
             result = JSON.parse(this.responseText);
             mapImg.src = 'data:image/svg+xml;base64,' + result.map;
-            mapImg.classList.remove("hidden");
             generateMapBtn.disabled = false;
         };
-
-        mapImg.src = 'spinner.gif';
-        generateMapBtn.disabled = true;
 
         var url = 'https://real-world-rpg-maps-staging.herokuapp.com/';
         var queryParams = {};
@@ -48,6 +44,10 @@
 
         request.addEventListener('load', onRequestLoad);
         request.addEventListener('error', onRequestError);
+
+        mapImg.classList.remove("hidden");
+        mapImg.src = 'spinner.gif';
+        generateMapBtn.disabled = true;
 
         makeRequest();
     }
