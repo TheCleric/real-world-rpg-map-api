@@ -42,7 +42,7 @@
             queryParams.radius = radius;
         }
 
-        url += '?' + Object.keys(queryParams).map(key => encodeURL(key) + '=' + encodeURI(queryParams[key])).join('&');
+        url += '?' + Object.keys(queryParams).map(key => encodeURI(key) + '=' + encodeURI(queryParams[key])).join('&');
 
         request.addEventListener('load', onRequestLoad);
         request.addEventListener('error', onRequestError);
