@@ -7,7 +7,7 @@
         var onRequestLoad = function() {
             if (this.status == 200) {
                 result = JSON.parse(this.responseText);
-                mapImg.src = 'data:image/svg+xml;utf8,' + result.map;
+                mapImg.src = 'data:image/svg+xml;base64,' + result.map;
             } else {
                 alert('Error: ' + this.status);
                 mapImg.src = '';
