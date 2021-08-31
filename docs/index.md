@@ -12,7 +12,6 @@
                 alert('Error: ' + this.status);
                 mapImg.src = '';
             }
-        }
         };
 
         mapImg.src = 'spinner.gif';
