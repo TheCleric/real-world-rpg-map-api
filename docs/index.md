@@ -1,30 +1,55 @@
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+
 <script>
     function generateMap() {
-        mapImg = document.getElementById("map-img");
-        radius = document.getElementById("radius").value;
+        var mapImg = document.getElementById("map-img");
+        var radius = document.getElementById("radius").value;
+        var generateMapBtn = document.getElementById("generate-map-btn");
+        var errorRetries = 0;
+        MAX_RETRIES = 2;
 
         var request = new XMLHttpRequest();
 
-        var onRequestLoad = function() {
-            if (this.status == 200) {
-                result = JSON.parse(this.responseText);
-                mapImg.src = 'data:image/svg+xml;base64,' + result.map;
+        var makeRequest = function() {
+            request.open('GET', url);
+            request.send(new URLSearchParams(queryParams));
+        }
+
+        var onRequestError = function() {
+            if (errorRetries < MAX_RETRIES) {
+                makeRequest();
+                errorRetries++;
             } else {
-                alert('Error: ' + this.status);
-                mapImg.src = '';
+                alert("Error: Could not generate map. Please try again later.");
+                mapImg.src.addClass("hidden");
+                generateMapBtn.disabled = false;
             }
+        }
+
+        var onRequestLoad = function() {
+            result = JSON.parse(this.responseText);
+            mapImg.src = 'data:image/svg+xml;base64,' + result.map;
+            mapImg.src.removeClass("hidden");
+            generateMapBtn.disabled = false;
         };
 
         mapImg.src = 'spinner.gif';
+        generateMapBtn.disabled = true;
 
         var url = 'https://real-world-rpg-maps-staging.herokuapp.com/';
+        var queryParams = {};
         if (radius !== '') {
-            url += '?radius=' + radius;
+            queryParams.radius = radius;
         }
 
         request.addEventListener('load', onRequestLoad);
-        request.open('GET', url);
-        request.send();
+        request.addEventListener('error', onRequestError);
+
+        makeRequest();
     }
 </script>
 
@@ -33,10 +58,10 @@
         <input type="number" id="radius" placeholder="Radius" />
     </div>
     <div>
-        <button onclick="generateMap()">Generate Map!</button>
+        <button onclick="generateMap()" id="generate-map-btn">Generate Map!</button>
     </div>
     <div>
-        <img id="map-img"/>
+        <img id="map-img" class="hidden" />
     </div>
 </div>
 
