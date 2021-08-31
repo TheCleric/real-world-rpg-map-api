@@ -17,6 +17,6 @@ jobs:
       - name: Python setup
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.7
       - name: Build and run all checks
         run: make install ci

@@ -5,9 +5,9 @@ import matplotlib
 matplotlib.use('Agg')
 
 # import matplotlib.font_manager as fm
-import prettymaps
-from fastapi import FastAPI
-from matplotlib import pyplot as plt
+import prettymaps  # pylint: disable=wrong-import-position
+from fastapi import FastAPI # pylint: disable=wrong-import-position
+from matplotlib import pyplot as plt # pylint: disable=wrong-import-position
 
 app = FastAPI()
 
