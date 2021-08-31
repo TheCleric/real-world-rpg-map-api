@@ -25,7 +25,7 @@
                 errorRetries++;
             } else {
                 alert("Error: Could not generate map. Please try again later.");
-                mapImg.src.addClass("hidden");
+                mapImg.classList.add("hidden");
                 generateMapBtn.disabled = false;
             }
         }
@@ -33,7 +33,7 @@
         var onRequestLoad = function() {
             result = JSON.parse(this.responseText);
             mapImg.src = 'data:image/svg+xml;base64,' + result.map;
-            mapImg.src.removeClass("hidden");
+            mapImg.src.classList.remove("hidden");
             generateMapBtn.disabled = false;
         };
 
