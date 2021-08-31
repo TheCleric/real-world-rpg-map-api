@@ -4,20 +4,22 @@
 
         var request = new XMLHttpRequest();
 
-        request.onreadystatechange = function() {
-            if (request.readyState == 4) {
-                if (request.status == 200) {
-                    result = JSON.parse(request.responseText);
-                    mapImg.src = 'data:image/svg+xml;utf8,' + result.map;
-                } else {
-                    alert('Error: ' + request.status);
-                    mapImg.src = '';
-                }
+        var onRequestLoad = function() {
+            if (this.status == 200) {
+                result = JSON.parse(this.responseText);
+                mapImg.src = 'data:image/svg+xml;utf8,' + result.map;
+            } else {
+                alert('Error: ' + this.status);
+                mapImg.src = '';
             }
+        }
         };
 
         mapImg.src = 'spinner.gif';
+
+        request.addEventListener('load', onRequestLoad);
         request.open('GET', 'https://real-world-rpg-maps-staging.herokuapp.com/');
+        request.send();
     }
 </script>
 
