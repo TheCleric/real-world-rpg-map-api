@@ -13,12 +13,12 @@ app = FastAPI()
 
 
 @app.get("/")
-def create_map() -> Dict[str, Any]:
+def create_map(radius:int = 500) -> Dict[str, Any]:
     _, axis = plt.subplots(figsize=(12, 12), constrained_layout=True)
 
     prettymaps.plot(
         query=(27.7703796,-82.6695085),
-        radius=1100,
+        radius=radius,
         ax=axis,
         layers={
             'perimeter': {},
