@@ -2,7 +2,7 @@ from typing import Any, Dict
 
 from fastapi import FastAPI
 
-import api.maps as maps
+from api import maps
 
 app = FastAPI()
 
