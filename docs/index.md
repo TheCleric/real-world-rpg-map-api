@@ -33,7 +33,7 @@
         var onRequestLoad = function() {
             result = JSON.parse(this.responseText);
             mapImg.src = 'data:image/svg+xml;base64,' + result.map;
-            mapImg.src.classList.remove("hidden");
+            mapImg.classList.remove("hidden");
             generateMapBtn.disabled = false;
         };
 
