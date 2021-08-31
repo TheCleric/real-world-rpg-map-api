@@ -5,7 +5,6 @@
         var request = new XMLHttpRequest();
 
         request.onreadystatechange = function() {
-            alert(request.readyState);
             if (request.readyState == 4) {
                 if (request.status == 200) {
                     result = JSON.parse(request.responseText);
