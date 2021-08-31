@@ -1,6 +1,7 @@
 <script>
     function generateMap() {
         mapImg = document.getElementById("map-img");
+        radius = document.getElementById("radius").value;
 
         var request = new XMLHttpRequest();
 
@@ -16,15 +17,27 @@
 
         mapImg.src = 'spinner.gif';
 
+        var url = 'https://real-world-rpg-maps-staging.herokuapp.com/';
+        if (radius !== '') {
+            url += '?radius=' + radius;
+        }
+
         request.addEventListener('load', onRequestLoad);
-        request.open('GET', 'https://real-world-rpg-maps-staging.herokuapp.com/');
+        request.open('GET', url);
         request.send();
     }
 </script>
 
 <div>
-    <button onclick="generateMap()">Generate Map!</button>
-    <img id="map-img"/>
+    <div>
+        <input type="number" id="radius" placeholder="Radius" />
+    </div>
+    <div>
+        <button onclick="generateMap()">Generate Map!</button>
+    </div>
+    <div>
+        <img id="map-img"/>
+    </div>
 </div>
 
 <!--
