@@ -1,3 +1,4 @@
+import base64
 from typing import Any, Dict
 
 from fastapi import FastAPI
@@ -20,5 +21,7 @@ app.add_middleware(
 @app.get("/")
 def create_map(radius: int = 500) -> Dict[str, Any]:
     buf = maps.create_map(radius)
+    b64_map = base64.b64encode(buf.read())
+    b64_map_str = b64_map.decode("utf-8")
 
-    return {"map": buf.read().decode('utf-8')}
+    return {"map": b64_map_str}
