@@ -1,16 +1,19 @@
 import base64
+import json
 from xml.etree import ElementTree
 
 import pytest
 
 from api import main
 
-
-def test_hello() -> None:
+@pytest.mark.asyncio
+async def test_hello() -> None:
     map_result = {}
 
     with pytest.warns(DeprecationWarning):
-        map_result = main.create_map()
+        map_result_response = main.create_map()
+        map_result_iterator = [x async for x in map_result_response.body_iterator]
+        map_result = json.loads("".join(map_result_iterator))
     assert 'map' in map_result
 
     generated_map = map_result['map']
