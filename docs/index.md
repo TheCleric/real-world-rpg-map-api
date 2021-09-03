@@ -24,9 +24,9 @@
                 makeRequest();
                 errorRetries++;
             } else {
-                alert("Error: Could not generate map. Please try again later.");
                 mapImg.classList.add("hidden");
                 generateMapBtn.disabled = false;
+                alert("Error: Could not generate map. Please try again later.");
             }
         }
 
