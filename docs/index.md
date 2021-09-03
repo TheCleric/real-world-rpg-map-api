@@ -9,25 +9,14 @@
         var mapImg = document.getElementById("map-img");
         var radius = document.getElementById("radius").value;
         var generateMapBtn = document.getElementById("generate-map-btn");
-        var errorRetries = 0;
-        MAX_RETRIES = 2;
 
         var request = new XMLHttpRequest();
 
-        var makeRequest = function() {
-            request.open('GET', url);
-            request.send();
-        }
-
-        var onRequestError = function() {
-            if (errorRetries < MAX_RETRIES) {
-                makeRequest();
-                errorRetries++;
-            } else {
-                mapImg.classList.add("hidden");
-                generateMapBtn.disabled = false;
-                alert("Error: Could not generate map. Please try again later.");
-            }
+        var onRequestError = function(e) {
+            mapImg.classList.add("hidden");
+            generateMapBtn.disabled = false;
+            console.error(e);
+            alert("Error: Could not generate map. Please try again later.");
         }
 
         var onRequestLoad = function() {
@@ -51,7 +40,8 @@
         mapImg.src = 'spinner.gif';
         generateMapBtn.disabled = true;
 
-        makeRequest();
+        request.open('GET', url);
+        request.send();
     }
 </script>
 
