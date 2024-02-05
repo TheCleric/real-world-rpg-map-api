@@ -8,7 +8,7 @@ readme = 'README.md'
 requires-python = '>=3.7'
 urls = { repository = 'https://github.com/TheCleric/ppsetuptools' }
 
-dependencies = ['fastapi==0.68.1', 'uvicorn==0.15.0']
+dependencies = ['fastapi==0.109.1', 'uvicorn==0.15.0']
 
 [[project.authors]]
 name = 'Adam Weeden'
